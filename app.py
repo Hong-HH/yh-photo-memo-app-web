@@ -1,5 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
+# api 호출을 위한 requests 함수 
+import requests
 
 
 from config import Config
@@ -18,11 +20,28 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 
-@app.route("/login")
+@app.route("/login" , methods=['POST','GET'])
 def login():
+
+    if request.method =='POST':
+        email = request.form['email']
+        password= request.form['password']
+        return "posted"
+
     
-    return "<p>Hello, This is Login Page!</p>"
+    # method 가 get 일때
+    else :
+        return render_template('login.html')
+
+@app.route("/register")
+def register():
+    
+    return "<p>Hello, This is register Page!</p>"
+
 
 
 if __name__ == "__main__" :
     app.run()
+    # 개발 끝나면 디버그 모드 풀기
+    # app.run(debug=True)
+    # Flask.run(debug=True)

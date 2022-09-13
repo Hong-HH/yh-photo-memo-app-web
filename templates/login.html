@@ -1,0 +1,96 @@
+<!-- 로그인 화면 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>PHOTO MEMO</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/util.css')}}>
+	<link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/main.css')}}>
+<!--===============================================================================================-->
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+	
+</style>
+<!--===============================================================================================-->
+</head>
+
+
+<body>
+	<div class="limiter">
+		<!--===========================================todo 로컬 api 고치기======================================-->
+		<form action="http://127.0.0.1:5000/login" method="post">
+			<div class="container-login100" >
+				<div class="wrap-login100 p-t-50 p-b-90">
+					<span class="login100-form-title p-b-25" >
+						<img style="margin-top: -30%;width:300px;" src= "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzViRe%2FbtrL1AaMkQA%2F9MRfkk23R1nKH49slyP53K%2Fimg.png" >
+
+					</span>
+
+					<form class="login100-form validate-form flex-sb flex-w">
+						
+						<span class="login100-form-title p-b-25" style="font-family: 'Jua', sans-serif;color: #303336;">
+							로그인
+						</span>
+
+						
+						<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+							<input type="text" class="form-control input100" id="email" placeholder="이메일" name="email" value="username@sample.com">
+							<span class="focus-input100"></span>
+						</div>
+						
+						
+						<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+							<input type="password" class="form-control input100" id="password" placeholder="비밀번호" name="password" value="123456789">
+							<span class="focus-input100"></span>
+						</div>
+
+						<span class="flex-sb-m w-full p-t-3 p-b-24 p-b-20">
+							<!-- 로그인 error 출력 -->
+							{{ result }}
+						</span>
+
+						
+						<!-- 나중에 추가 예정 -->
+						<!-- <div class="flex-sb-m w-full p-t-3 p-b-24">
+							<div>
+								<a href="#" class="txt1">
+									아이디/비밀번호 찾기
+								</a>
+							</div>
+						</div> -->
+
+						<!-- <button type="submit" class="btn btn-primary" style="float:right" id="login">로그인</button> -->
+
+						<div class="container-login100-form-btn m-t-17">
+							<button class="login100-form-btn" type="submit", style="font-family: 'Jua', sans-serif;font-size: 24px;">
+								로그인
+							</button>
+						</div>
+
+						<div class="flex-sb-m w-full p-t-3 p-b-24">
+							
+						</div>
+
+						<div class="flex-sb-m w-full p-t-3 p-b-24" style="margin: center;">
+							<div>
+								회원이 아니시라면 
+								<a href="{{ url_for('register') }}" class="txt1">
+									회원가입
+								</a>
+								 을 진행해주세요
+							</div>
+						</div>
+
+						
+					</form>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>
