@@ -5,7 +5,7 @@ import requests
 
 
 from config import Config
-from utils import login_api
+from utils import login_api, main_api
 
 
 app = Flask(__name__)
@@ -40,7 +40,6 @@ def login():
         else :
             return render_template('login.html', result=login_result['message'])
 
-    
     # method 가 get 일때
     else :
         print("login get")
@@ -51,9 +50,22 @@ def register():
     
     return "<p>Hello, This is register Page!</p>"
 
+
 @app.route("/main")
 def main():
-    return "<p>Hello,  This is  main pahge</p>"
+    if 'access_token' in session:
+        main_result = main_api()
+        # API 호출 결과에 따른 페이지 이동 
+        print('main api 호출 결과' + str(main_result['status']))
+
+        if main_result['status'] == 200 :
+            memo_list = main_result['list']
+            memo_count = main_result['count']
+            print('메모 갯수는 ' + str(memo_count))
+
+        return  render_template('main.html', memo_list = memo_list)
+    else : 
+        return redirect(url_for('login'))
 
 
 

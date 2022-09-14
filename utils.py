@@ -20,3 +20,21 @@ def login_api(email, password):
     else :
         return login_result
 
+
+def main_api():
+    # 세션에서 access_token 가져오기
+    access_token = session['access_token']
+    # 메모 리스트 가져오는 api url 
+    url = Config.END_POINT +  '/v1/memo'
+    print(url)
+    # 헤더에 엑세스 토큰 정보 담기
+    headers={'Authorization':'Bearer '+access_token}
+    params =  {"offset": 0, "limit": 30 }
+
+    # api 호출 (.json 으로 Response 객체 json으로 받기)
+    main_result = requests.get(url,headers=headers, params=params).json()
+    
+    return main_result
+
+
+
