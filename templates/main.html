@@ -56,7 +56,10 @@ nav ul {
 
 article {
   float: left;
-  padding: 30px;
+  padding-left: 16px;
+  padding-right: 0;
+  padding-top: 16px;
+  padding-bottom: 30px;
   width: 85%;
   height: 100%;
   background-color: white;
@@ -86,8 +89,7 @@ section::after {
   transition: 0.3s;
   width: 300px;
   height: 400px;
-
-  
+  margin: 8px; 
 
 }
 
@@ -104,7 +106,6 @@ section::after {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
 
 }
 
@@ -136,7 +137,7 @@ section::after {
   </nav>
   
   <article>
-    <h1>메모 리스트 넣어야함</h1>
+    <h1 style="margin-left: 8px;">메모 리스트</h1>
     <div class="container_body"> 
 
       <!-- api 에서 불러온 내용 여기 적기 -->
