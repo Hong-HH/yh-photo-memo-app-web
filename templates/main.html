@@ -13,33 +13,30 @@ html {
   height: 100vh;
 }
 
-
+/*  calc((100vw - 1065px)/2); */
 
 body {
   font-family: 'Jua', sans-serif;
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: calc(100vh - 180px);
 }
 
 /* Style the header */
 header {
   background-color: #666;
-  height: 15%;
+  height: 180px;
   text-align: center;
   color: white;
   margin: 0;
 }
 
-.title {
-  text-align: center;
-  background-color: #666;
-  margin: 0;
-}
+
 
 h2 {
-  font-size: 35px;
+  font-size: 48px;
   margin: 0;
+  line-height: 180px;
 }
 
 /* Create two columns/boxes that floats next to each other */
@@ -69,7 +66,7 @@ article {
 
 
 section {
-  height: 80%;
+  height: 100%;
 }
 
 
@@ -82,14 +79,7 @@ section::after {
   clear: both;
 }
 
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: white;
-  height: 5%;
-}
+
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -122,6 +112,7 @@ footer {
 @media (max-width: 600px) {
   nav, article {
     width: 100%;
+    height: auto;
   }
 }
 </style>
@@ -130,9 +121,9 @@ footer {
 
 
 <header>
-  <div class="title">
-    <h2>My photo memo</h2>
-  </div>
+
+  <h2>My photo memo</h2>
+
 </header>
 
 <section>
@@ -160,13 +151,11 @@ footer {
       {% endfor %}
 
      
-    </div>>
+    </div>
   </article>
 </section>
 
-<footer>
-  <p>Footer</p>
-</footer>
+
 
 </body>
 </html>

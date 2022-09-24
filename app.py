@@ -81,4 +81,5 @@ if __name__ == "__main__" :
     # Flask.run(debug=True)
 
     # 현재 api 를 5000으로 웹을 5001로 돌리고 있음
+    # set FLASK_ENV=development
     # flask run --port 5001
