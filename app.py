@@ -63,7 +63,10 @@ def main():
             memo_count = main_result['count']
             print('메모 갯수는 ' + str(memo_count))
 
-        return  render_template('main.html', memo_list = memo_list)
+            return  render_template('main.html', memo_list = memo_list)
+        else :
+            return redirect(url_for('login'))
+
     else : 
         return redirect(url_for('login'))
 
