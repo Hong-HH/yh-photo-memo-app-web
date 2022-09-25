@@ -1,13 +1,26 @@
 import requests
 from config import Config
 from flask import session
+# 실행시간 체크를 위한 구문
+from time import time
+
+
 
 def login_api(email, password):
     url = Config.END_POINT + "v1/user/login"
     print(url)
     login_req = { "email": email,  "password" :password  }
 
+    # api 실행시간 체크를 위한 구문
+    begin = time()
+
     login_result  = requests.post(url, json = login_req )
+
+    # api 실행시간 체크를 위한 구문
+    end = time()
+    print('실행 시간: {0:.3f}초'.format(end - begin))
+
+
     login_result = login_result.json()
 
     if login_result['status'] == 200 :
@@ -31,8 +44,15 @@ def main_api():
     headers={'Authorization':'Bearer '+access_token}
     params =  {"offset": 0, "limit": 30 }
 
+    # api 실행시간 체크를 위한 구문
+    begin = time()
+
     # api 호출 (.json 으로 Response 객체 json으로 받기)
     main_result = requests.get(url,headers=headers, params=params).json()
+
+    # api 실행시간 체크를 위한 구문
+    end = time()
+    print('실행 시간: {0:.3f}초'.format(end - begin))
     
     return main_result
 
