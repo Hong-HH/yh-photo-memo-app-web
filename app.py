@@ -38,6 +38,7 @@ def login():
             return redirect(url_for('main'))
 
         else :
+            print(login_result['message'])
             return render_template('login.html', result=login_result['message'])
 
     # method 가 get 일때
@@ -65,6 +66,8 @@ def main():
 
             return  render_template('main.html', memo_list = memo_list)
         else :
+            if  main_result['status'] == 401 :
+                print(main_result['message'])
             return redirect(url_for('login'))
 
     else : 
