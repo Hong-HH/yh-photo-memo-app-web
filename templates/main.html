@@ -8,8 +8,10 @@
 <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/util.css')}}>
 <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/main.css')}}>
 <!--===============================================================================================-->
+<script src="{{url_for('static', filename='js/memo_add.js')}}"></script>
+<!--===============================================================================================-->
 <style>
-  /* @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap'); */
+
   * {
     box-sizing: border-box;
   }
@@ -187,6 +189,9 @@
     }
 
   }
+
+
+
 </style>
 </head>
 <body>
@@ -198,15 +203,34 @@
 
 </header>
 
+<!--===============================================================================================-->
+<!-- 메모 추가용 다이얼로그  -->
+<dialog id="favDialog">
+  <form method="dialog">
+    <input type="file" id="myFile" name="filename">
+    <div>
+      <button value="cancel">취소</button>
+      <button id="confirmBtn" value="default">추가</button>
+    </div>
+  </form>
+</dialog>
+
+
+
+
+
+
+
+<!--===============================================================================================-->
+
 <section>
   <nav>
-    <form action="http://127.0.0.1:5001/login" method="get">
-      <div class="container-login100-form-btn m-t-17">
-        <button class="login100-form-btn" type="submit", style= "font-size: 24px;">
-          메모 추가하기
-        </button>
-      </div>
-    </form>
+
+    <div class="container-login100-form-btn m-t-17">
+      <button id="updateDetails" class="login100-form-btn" style= "font-size: 24px;">
+        메모 추가하기
+      </button>
+    </div>
 
     <!-- <ul>
       <li><a href="#">폴더 목록 나중에 추가하기</a></li>
@@ -217,6 +241,7 @@
   <article>
     <h1 style="margin-left: 8px;margin-top: 10px;margin-bottom: 10px;">메모 리스트</h1>
     <div class="container_body"> 
+     
 
       <!-- api 에서 불러온 내용 여기 적기 -->
       {% for item in memo_list %}
@@ -249,6 +274,7 @@
     
   </article>
 </section>
+
 
 
 
