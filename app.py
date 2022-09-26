@@ -60,6 +60,8 @@ def main():
         print('main api 호출 결과' + str(main_result['status']))
 
         if main_result['status'] == 200 :
+
+            total_count = count_result['message'][0]['total']
             
             print("총 메모의 갯수는 :  " + str(count_result['message'][0]['total']))
 
@@ -67,7 +69,7 @@ def main():
             memo_count = main_result['count']
             print('메모 갯수는 ' + str(memo_count))
 
-            return  render_template('main.html', memo_list = memo_list)
+            return  render_template('main.html', memo_list = memo_list, page_list = range(1, total_count +1))
         else :
             if  main_result['status'] == 401 :
                 print(main_result['message'])
