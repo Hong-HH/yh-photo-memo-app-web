@@ -53,8 +53,36 @@ def main_api():
     # api 실행시간 체크를 위한 구문
     end = time()
     print('실행 시간: {0:.3f}초'.format(end - begin))
+
+
+
+
+    ################ 2번째 api 호출 ################################################
+    # 메모 갯수 가져오는 api url 
+    url = Config.END_POINT +  '/v1/memo/count'
+    print(url)
+    # 헤더에 엑세스 토큰 정보 담기
+    headers={'Authorization':'Bearer '+access_token}
+
+    # api 실행시간 체크를 위한 구문
+    begin = time()
+
+    # api 호출 (.json 으로 Response 객체 json으로 받기)
+    count_result = requests.get(url,headers=headers).json()
+
+    # api 실행시간 체크를 위한 구문
+    end = time()
+    print('실행 시간: {0:.3f}초'.format(end - begin))
+
+
+
+
+
+
+
+
     
-    return main_result
+    return main_result, count_result
 
 
 

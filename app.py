@@ -55,11 +55,14 @@ def register():
 @app.route("/main")
 def main():
     if 'access_token' in session:
-        main_result = main_api()
+        main_result, count_result = main_api()
         # API 호출 결과에 따른 페이지 이동 
         print('main api 호출 결과' + str(main_result['status']))
 
         if main_result['status'] == 200 :
+            
+            print("총 메모의 갯수는 :  " + str(count_result['message'][0]['total']))
+
             memo_list = main_result['list']
             memo_count = main_result['count']
             print('메모 갯수는 ' + str(memo_count))
