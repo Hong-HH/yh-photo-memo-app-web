@@ -52,34 +52,38 @@ def register():
     return "<p>Hello, This is register Page!</p>"
 
 
-@app.route("/main")
+@app.route("/main"  , methods=['POST','GET'])
 def main():
-    if 'access_token' in session:
-        main_result, count_result = main_api()
-        # API 호출 결과에 따른 페이지 이동 
-        print('main api 호출 결과' + str(main_result['status']))
+    if request.method =='GET':
+        if 'access_token' in session:
+            main_result, count_result = main_api()
+            # API 호출 결과에 따른 페이지 이동 
+            print('main api 호출 결과' + str(main_result['status']))
 
-        if main_result['status'] == 200 :
+            if main_result['status'] == 200 :
 
-            total_count = count_result['message'][0]['total']
-            page_count = int(total_count/30) + 1
+                total_count = count_result['message'][0]['total']
+                page_count = int(total_count/30) + 1
 
-            print("총 메모의 갯수는 :  " + str(total_count))
-            print("총 페이지의 갯수는 : " + str(page_count))
-            
-            
+                print("총 메모의 갯수는 :  " + str(total_count))
+                print("총 페이지의 갯수는 : " + str(page_count))
+                
+                
 
-            memo_list = main_result['list']
-            memo_count = main_result['count']
-            print('메모 갯수는 ' + str(memo_count))
+                memo_list = main_result['list']
+                memo_count = main_result['count']
+                print('메모 갯수는 ' + str(memo_count))
 
-            return  render_template('main.html', memo_list = memo_list, page_list = range(1, page_count +1))
-        else :
-            if  main_result['status'] == 401 :
-                print(main_result['message'])
+                return  render_template('main.html', memo_list = memo_list, page_list = range(1, page_count +1))
+            else :
+                if  main_result['status'] == 401 :
+                    print(main_result['message'])
+                return redirect(url_for('login'))
+
+        else : 
             return redirect(url_for('login'))
-
-    else : 
+    
+    else :
         return redirect(url_for('login'))
 
 

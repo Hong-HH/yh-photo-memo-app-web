@@ -75,14 +75,13 @@ def main_api():
     print('실행 시간: {0:.3f}초'.format(end - begin))
 
 
-
-
-
-
-
-
     
     return main_result, count_result
 
 
 
+
+def memo_add_api() :
+
+    
+    return True

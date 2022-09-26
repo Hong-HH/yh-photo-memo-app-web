@@ -160,6 +160,25 @@ text-align: center;
 display: block;
 }
 
+/* 메모 추가 할 때 사용할것 */
+
+.container-memo-add {
+    width: 100%;  
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;;
+}
+  
 
 
 
