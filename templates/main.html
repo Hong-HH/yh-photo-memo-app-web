@@ -9,16 +9,17 @@
   box-sizing: border-box;
 }
 
-html {
+html , body{
   height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /*  calc((100vw - 1065px)/2); */
 
 body {
   font-family: 'Jua', sans-serif;
-  margin: 0;
-  padding: 0;
+
   height: calc(100vh - 180px);
 }
 
@@ -41,7 +42,6 @@ h2 {
 
 /* Create two columns/boxes that floats next to each other */
 nav {
-  float: left;
   width: 15%;
   background: #ccc;
   padding: 20px;
@@ -55,21 +55,24 @@ nav ul {
 }
 
 article {
-  float: left;
   padding-left: 16px;
   padding-right: 0;
   padding-top: 16px;
-  /* padding-bottom: 30px; */
   width: 85%;
   height: 100%;
   background-color: white;
   overflow-x: hidden; /* Hide horizontal scrollbar */
-  overflow-y: scroll; /* Add vertical scrollbar */
+  overflow-y: auto; /* Add vertical scrollbar */
+
+  display: flex; 
+  flex-direction: column; 
 }
 
 
 section {
   height: 100%;
+  display: flex; 
+  flex-direction: row; 
 }
 
 
@@ -102,11 +105,11 @@ section::after {
 }
 
 .container_body{
-  height:  100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
+  margin-bottom: 30px;
 }
 
 .card_title {
@@ -147,13 +150,17 @@ section::after {
   flex-wrap: nowrap;
   align-content: flex-end;
   justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .page_button {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: 1px solid #666;
-  margin: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;  
 }
 
 .container_body::after {
@@ -169,6 +176,11 @@ section::after {
     width: 100%;
     height: auto;
   }
+
+  section {
+  flex-direction: column; 
+  }
+
 }
 </style>
 </head>
@@ -208,17 +220,17 @@ section::after {
      
     </div>
 
-    <br> 
 
     <div class="container_page">
 
       {% for count in page_list %}
         <div class="page_button">
-          {{  count  }}
+          <p style="line-height: 40px;margin: 0;">{{  count  }}</p>
         </div>  
       {% endfor %}
 
     </div>
+
 
 
 
