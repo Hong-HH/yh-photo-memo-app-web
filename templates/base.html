@@ -12,7 +12,7 @@
 <!-- <script src="{{url_for('static', filename='js/main_modal.js')}}"></script> -->
 <!--===============================================================================================-->
 
-
+{% block head %}{% endblock %}
 
 
 
@@ -33,9 +33,17 @@
   <nav>
     
     <div class="container-login100-form-btn m-t-17">
-      <button id="updateDetails" class="login100-form-btn" style= "font-size: 24px;">
-        메모 추가하기
-      </button>
+      <!-- TODO 로컬호스트 주소 바꾸기 -->
+      <!-- <button onclick="location.href = 'http://127.0.0.1:5001/';" id="myButton"  class="login100-form-btn" style= "font-size: 1.5em;">
+        + 메모
+      </button> -->
+      <form action="http://127.0.0.1:5001/add" method="get" style="width: 100%;">
+        <button id="myButton"  class="login100-form-btn"  style= "font-size: 1.5em;">
+          + 메모 
+        </button>
+      </form>
+
+     
     </div>
 
     <!-- <ul>
@@ -45,39 +53,11 @@
   </nav>
   
   <article>
-    <h1 style="margin-left: 8px;margin-top: 10px;margin-bottom: 10px;">메모 리스트</h1>
-    <div class="container_body"> 
-     
 
-      <!-- api 에서 불러온 내용 여기 적기 -->
-      {% for item in memo_list %}
-        <div class="card">
-          <img src="{{ item.photo_url }}"  style="width: 300px; height: 300px;">
-          <div class="container">
-            <div class="card_title">{{ item.title }}</div> 
-            <div class="card_content">{{ item.content }}</div> 
-          </div>
-        </div>
-      {% endfor %}
-
-     
-    </div>
-
-
-    <div class="container_page">
-
-      {% for count in page_list %}
-        <div class="page_button">
-          <p style="line-height: 40px;margin: 0;">{{  count  }}</p>
-        </div>  
-      {% endfor %}
-
-    </div>
-
-
-
-
+    <h1 style="margin-left: 8px;margin-top: 10px;margin-bottom: 10px;font-size: 1.5em;">{% block title %}{% endblock %}</h1>
     
+    <div id="content">{% block content %}{% endblock %}</div>
+
   </article>
 </section>
 

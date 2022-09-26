@@ -52,39 +52,55 @@ def register():
     return "<p>Hello, This is register Page!</p>"
 
 
-@app.route("/main"  , methods=['POST','GET'])
+@app.route("/main" )
 def main():
-    if request.method =='GET':
-        if 'access_token' in session:
-            main_result, count_result = main_api()
-            # API 호출 결과에 따른 페이지 이동 
-            print('main api 호출 결과' + str(main_result['status']))
 
-            if main_result['status'] == 200 :
+    if 'access_token' in session:
+        main_result, count_result = main_api()
+        # API 호출 결과에 따른 페이지 이동 
+        print('main api 호출 결과' + str(main_result['status']))
 
-                total_count = count_result['message'][0]['total']
-                page_count = int(total_count/30) + 1
+        if main_result['status'] == 200 :
 
-                print("총 메모의 갯수는 :  " + str(total_count))
-                print("총 페이지의 갯수는 : " + str(page_count))
-                
-                
+            total_count = count_result['message'][0]['total']
+            page_count = int(total_count/30) + 1
 
-                memo_list = main_result['list']
-                memo_count = main_result['count']
-                print('메모 갯수는 ' + str(memo_count))
+            print("총 메모의 갯수는 :  " + str(total_count))
+            print("총 페이지의 갯수는 : " + str(page_count))
+            
+            
 
-                return  render_template('main.html', memo_list = memo_list, page_list = range(1, page_count +1))
-            else :
-                if  main_result['status'] == 401 :
-                    print(main_result['message'])
-                return redirect(url_for('login'))
+            memo_list = main_result['list']
+            memo_count = main_result['count']
+            print('메모 갯수는 ' + str(memo_count))
 
-        else : 
+            return  render_template('memo_list.html', memo_list = memo_list, page_list = range(1, page_count +1))
+        else :
+            # API 호출에 문제가 생겼다면 로그인으로 
+            # TODO 나중에 로그인 만료인지 , 이미 로그아웃한 (REVOKED) 토큰인지 체크하기
+            if  main_result['status'] == 401 :
+                print(main_result['message'])
             return redirect(url_for('login'))
-    
-    else :
+
+    else : 
+        #  엑세스 토큰이 없다면 로그인 페이지로
         return redirect(url_for('login'))
+
+
+@app.route("/add" , methods=['POST','GET'])
+def add():
+
+    if request.method =='POST':
+        title = request.form['title']
+        date = request.form['date']
+        myfile = request.form['myfile']
+        # print(type(myfile)) --> str 임
+        return render_template('add.html')
+
+    else :
+        return render_template('add.html')
+
+
 
 
 
