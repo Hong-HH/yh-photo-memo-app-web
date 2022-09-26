@@ -38,7 +38,7 @@ def main_api():
     # 세션에서 access_token 가져오기
     access_token = session['access_token']
     # 메모 리스트 가져오는 api url 
-    url = Config.END_POINT +  '/v1/memo'
+    url = Config.END_POINT +  'v1/memo'
     print(url)
     # 헤더에 엑세스 토큰 정보 담기
     headers={'Authorization':'Bearer '+access_token}
@@ -59,7 +59,7 @@ def main_api():
 
     ################ 2번째 api 호출 ################################################
     # 메모 갯수 가져오는 api url 
-    url = Config.END_POINT +  '/v1/memo/count'
+    url = Config.END_POINT +  'v1/memo/count'
     print(url)
     # 헤더에 엑세스 토큰 정보 담기
     headers={'Authorization':'Bearer '+access_token}
