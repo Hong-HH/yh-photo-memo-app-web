@@ -30,20 +30,20 @@
     <br>
     <!-- <h1>The textarea form attribute</h1> -->
 
-    <form action="http://127.0.0.1:5001/add" method="post" style="width: 100%;">
+    <form action="http://127.0.0.1:5001/add" method="post"  enctype=multipart/form-data style="width: 100%;">
         <div>
             제목 : <input type="text" id="title" placeholder="제목" name="title" style="width: 50%; height: 30px; padding: left 10px;">
         </div>
 
         <!-- 파일 받는 input -->
-        <input type="file" id="myfile" name="myfile" accept="image/png, image/jpeg" style="padding-left: 0;padding-bottom: 0;padding-top: 0;margin-top: 16px;">
+        <input type="file" id="file" name="file" accept="image/png, image/jpeg" style="padding-left: 0;padding-bottom: 0;padding-top: 0;margin-top: 16px;">
         <p>파일 형식은 image/png, image/jpeg 만 가능합니다.</p>
         <div>
             날짜 : <input type="date"  id="date" placeholder="date" name="date" style="padding-left: 0;padding-bottom: 0;padding-top: 0;">
         </div>
         <br>
         <div>
-        <textarea rows="5" cols="200" name="comment" form="usrform" style="width: 90%;"> 내용을 적어주세요!</textarea>
+            <textarea rows="5" cols="200" name="memo_content" id = "memo_content" form="usrform" style="width: 90%;"> 내용을 적어주세요!</textarea>
         </div>
         <input type="submit"  id="addSubmit" placeholder="addSubmit" name="addSubmit" value="저장" >
     </form>

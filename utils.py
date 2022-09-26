@@ -1,3 +1,4 @@
+from unittest import result
 import requests
 from config import Config
 from flask import session
@@ -81,7 +82,40 @@ def main_api():
 
 
 
-def memo_add_api() :
+def memo_add_api(title_1, date_1, file_1, content_1) :
+    title =title_1 
+    date = date_1 
+    file = file_1
+    content = content_1
+    if content is None :
+        content = ""
+    
+
+    print(type(content))
+    print("" + str(type(date)) + str(date))
+
+    # 세션에서 access_token 가져오기
+    access_token = session['access_token']
+
+    # 메모를 추가하는 api
+    url = Config.END_POINT +  'v1/memo'
+    print(url)
+
+    # 헤더에 엑세스 토큰 정보 담기
+    headers={'Authorization':'Bearer '+access_token}
+
+    # api 실행시간 체크를 위한 구문
+    begin = time()
+
+    # api 호출 (.json 으로 Response 객체 json으로 받기)
+    add_result = requests.post(url,headers=headers,files={'photo' : file}, data= {'title' : title, 'date' : date, 'content' : content}).json()
+
+    # api 실행시간 체크를 위한 구문
+    end = time()
+    print('실행 시간: {0:.3f}초'.format(end - begin))
+
+    print(add_result)
+
 
     
-    return True
+    return add_result
