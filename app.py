@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, session,  redirect, url_for
 import requests
 
 # 파일 업로드를 위한 임포트
-from PIL import Image
+# from PIL import Image
 
 
 
@@ -115,14 +115,15 @@ def add():
         # print(type(myfile)) --> str 임
         file = request.files['file']
         print(type(file)) # 결과 : <class 'werkzeug.datastructures.FileStorage'>
-        
+        print(file.filename)
+        print(file.content_type)
+       
 
 
         if file and allowed_file(file.filename):
             # file = file.read()
             # print(type(file)) # 결과 : <class 'bytes'>
-            img = Image.open(file)
-            print(type(img))
+
             
             if title is None or len(title) < 1 :
                 print("point 1")

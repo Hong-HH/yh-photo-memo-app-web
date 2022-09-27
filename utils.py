@@ -107,8 +107,8 @@ def memo_add_api(title_1, date_1, file_1, content_1) :
     # api 실행시간 체크를 위한 구문
     begin = time()
 
-    # api 호출 (.json 으로 Response 객체 json으로 받기)
-    add_result = requests.post(url,headers=headers,files={'photo' : file}, data= {'title' : title, 'date' : date, 'content' : content}).json()
+    # api 호출 (.json 으로 Response 객체 json으로 받기) files 의 photo 의 두번째 파라미터인 파일은 file, file.read() 둘다 된다.
+    add_result = requests.post(url,headers=headers,files={'photo' : (file.filename, file, file.content_type )}, data= {'title' : title, 'date' : date, 'content' : content}).json()
 
     # api 실행시간 체크를 위한 구문
     end = time()
